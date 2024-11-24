@@ -1,0 +1,54 @@
+﻿<Page x:Class="KP.Pages.Disciplina_semestr"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:KP.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Disciplina_semestr">
+
+    <Grid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Visibility="{Binding IsEditor, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ComboBox x:Name="RabProgrammaComboBox" ItemsSource="{Binding RabProgrammy}" DisplayMemberPath="DisplayName" SelectedValuePath="ID_RabProg" Width="180" Margin="10"/>
+                <ComboBox x:Name="NomSemestrComboBox" Width="180" Margin="0,0,0,10">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
+                </ComboBox>
+                <ComboBox x:Name="Type_ZanyatiyaComboBox" Width="180" Margin="0,0,0,10">
+                    
+                </ComboBox>
+                <DatePicker x:Name="Okonc_Semestra" Width="180" Margin="0,0,0,10"/>
+
+                <Button Content="Добавить" Click="AddDisciplinaSemestr_Click" Width="120" Height="30" Margin="0,0,0,10"/>
+                <Button Content="Удалить" Click="DeleteDisciplinaSemestr_Click" Width="120" Height="30" Margin="0,0,0,10"/>
+            </StackPanel>
+
+            <ListView x:Name="DisciplinaSemestrListView" ItemsSource="{Binding DisciplinaSemestry}" Grid.Column="1">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding ID_Program}" />
+                        <GridViewColumn Header="Семестр" Width="100" DisplayMemberBinding="{Binding NomSemestr}" />
+                        <GridViewColumn Header="Рабочая программа" Width="200" DisplayMemberBinding="{Binding RabProgramma.DisplayName}" />
+                        <GridViewColumn Header="Тип занятия" Width="100" DisplayMemberBinding="{Binding Type_Zanyatiya}" />
+                        <GridViewColumn Header="Дата окончания семестра" Width="150" DisplayMemberBinding="{Binding Okonc_Semestra, StringFormat={}{0:dd/MM/yyyy}}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+    </Grid>
+</Page>
